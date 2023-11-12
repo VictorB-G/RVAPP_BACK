@@ -1,0 +1,39 @@
+logging:
+  level:
+    .: ERROR
+    org.springframework: ERROR
+    com.victorb: ERROR
+    
+
+spring:
+  config:
+    activate:
+      on-profile: local
+      
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.1.215:3306/RESERVAPP
+    username: RVAP_USR
+    password: RVAP_USR
+  
+  jpa:
+    show-sql: true
+    hibernate: 
+      ddl-auto: none
+
+--- 
+spring:
+  config:
+    activate:
+      on-profile: pro
+      
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.1.215:3306/RESERVAPP
+    username: RVAP_USR
+    password: RVAP_USR
+  
+  jpa:
+    show-sql: true
+    hibernate: 
+      ddl-auto: none
