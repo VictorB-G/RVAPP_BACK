@@ -7,5 +7,4 @@
                                         | |   | |    
                                         |_|   |_|                                          
 SpringBoot Version (v${spring-boot.version})
-ReservApp Version (v${spring-boot.version})
                                       

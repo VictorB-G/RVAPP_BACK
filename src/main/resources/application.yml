@@ -1,15 +1,16 @@
 logging:
   level:
-    .: ERROR
-    org.springframework: ERROR
-    com.victorb: ERROR
+    .: INFO
+    org.springframework: INFO
+    com.victorb: INFO
     
+
 
 spring:
   config:
     activate:
       on-profile: local
-      
+
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://192.168.1.215:3306/RESERVAPP
@@ -18,10 +19,32 @@ spring:
   
   jpa:
     show-sql: true
-    hibernate: 
-      ddl-auto: none
+    properties:
+      hibernate: 
+        ddl-auto: none
+        dialect: org.hibernate.dialect.MariaDBDialect
+      
+security:
+  jwt:
+    duration: 1440 #En minutos, 24 horas
+    secret: 1w4eqvrR7d3eUr2oOUL5JVqMGVkjbFtuYC1AlF2B6OSKE32W #Secret en base64 distintos para cada entorno para que no sirva el token de uno en otro
+    
+server:
+  servlet:
+    context-path: /rvap
 
 --- 
+logging:
+  level:
+    .: ERROR
+    org.springframework: ERROR
+    com.victorb: INFO
+    
+security:
+  jwt:
+    duration: 60 #En minutos, 1 hora
+    secret: mE189/l9Ne+mFY2An9oR/40aiREViUC9Zl/gn668kZcFNUom #Secret en base64 distintos para cada entorno para que no sirva el token de uno en otro
+
 spring:
   config:
     activate:
@@ -34,6 +57,11 @@ spring:
     password: RVAP_USR
   
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate: 
       ddl-auto: none
+      dialect: org.hibernate.dialect.MariaDBDialect
+      
+server:
+  servlet:
+    context-path: /rvap
