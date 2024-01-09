@@ -3,7 +3,6 @@ package com.victorb.reservapp.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import lombok.Data;
 
@@ -23,7 +22,7 @@ public class Paginacion<T> {
 	public static <T, Y> Paginacion<T> from(Page<Y> page, Function<? super Y, ? extends T> mapper) {
 		Paginacion<T> paginacion = new Paginacion<>();
 		paginacion.setPaginacionDto(PaginacionDto.fromPage(page));
-		paginacion.setContent(page.getContent().stream().map(mapper).collect(Collectors.toList()));
+		paginacion.setContent((List<T>) page.getContent().stream().map(mapper).toList());
 		return paginacion;
 	}
 }

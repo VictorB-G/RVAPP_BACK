@@ -81,7 +81,7 @@ public class UsuarioEntity implements Serializable, UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		//Solo hacemos el authority del ROL ya no usaremos lista de permisos por rol para un proyecto tan pequeño
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(getCodRol()));
+		authorities.add(new SimpleGrantedAuthority("ROLE_"+getCodRol()));
 		return authorities;
 	}
 

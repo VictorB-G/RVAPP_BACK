@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.victorb.reservapp.db.entity.UsuarioEntity;
 import com.victorb.reservapp.provider.JwtProvider;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -47,5 +48,17 @@ public class JwtProviderImp implements JwtProvider {
 	private SecretKey generateSecretKey() {
 		byte[] secretBytes = Decoders.BASE64.decode(secret);
 		return Keys.hmacShaKeyFor(secretBytes);
+	}
+
+	@Override
+	public String extraerUsuario(String jwt) {
+		return extraerClaims(jwt).getSubject();
+	}
+
+	private Claims extraerClaims(String jwt) {
+		return Jwts.parser()
+			.verifyWith(generateSecretKey())
+			.build()
+			.parseSignedClaims(jwt).getPayload();
 	}
 }

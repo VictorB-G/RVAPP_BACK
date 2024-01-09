@@ -8,4 +8,6 @@ public interface JwtProvider {
 
 	String generateToken(UsuarioEntity usuario, Map<String, Object> a);
 
+	String extraerUsuario(String jwt);
+
 }
